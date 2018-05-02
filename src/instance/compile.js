@@ -27,22 +27,20 @@ exports._compile = function () {
  */
 exports._compileElement = function (node) {
     // 判断节点是否是组件指令
+    console.log('===========================node', node);
+    // <my-component message="Hello Vue!"></my-component>
     if (this._checkComponentDirs(node)) {
         return;
     }
-
     let hasAttributes = node.hasAttributes();
-
     // 解析高优指令
     if (hasAttributes && this._checkPriorityDirs(node)) {
         return;
     }
-
     // 解析属性
     if (hasAttributes) {
         this._compileAttrs(node);
     }
-
     if (node.hasChildNodes()) {
         Array.from(node.childNodes).forEach(this._compileNode, this);
     }

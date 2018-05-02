@@ -11,9 +11,9 @@ module.exports = function (Vue) {
         let Super = this;
         extendOptions = extendOptions || {};
         let Sub = createClass();
-        // 继承，另一种写法Sub.prototype = new Super()
+        // Object.create()创建的对象是没有Object的原型方法和属性的(toString,hasOwnProperty等)，以Super.prototype作为它的原型
         Sub.prototype = Object.create(Super.prototype);
-        // Sub.prototype.constructor指向了Super.prototype,被重写了，所以下面需要重新赋值一下
+        // Sub.prototype.constructor指向了Super.prototype,被重写了
         Sub.prototype.constructor = Sub;
         // 将原始的Vue的options和组件的options进行合并
         Sub.options = _.mergeOptions(Super.options, extendOptions);
@@ -25,7 +25,6 @@ module.exports = function (Vue) {
      * 为什么不能直接定义VueComponent,而要每声明一个组件,都new一个构造函数呢?
      * 因为在extend函数中,我们把options当做VueComponent的自定义属性,
      * 那么就意味着如果我们一直使用同一个构造函数的话, 那么所有组件最终的options都会是一样的
-     * 这显然不妥
      * @returns {Function}
      */
     function createClass() {
@@ -39,7 +38,9 @@ module.exports = function (Vue) {
      * @returns definition
      */
     Vue.component = function (id, definition) {
+        // this.options为Vue本身自带选项，包括components和directives
         this.options.components[id] = definition;
+        console.log('===========================this.options', this.options);
         return definition;
     };
 };
