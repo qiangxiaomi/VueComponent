@@ -130,6 +130,7 @@ exports._checkPriorityDirs = function (node) {
  */
 exports._checkComponentDirs = function (node) {
     let tagName = node.tagName.toLowerCase();
+    console.log('====================tagName', tagName);
     if (this.$options.components[tagName]) {
         let dirs = this._directives;
         dirs.push(
