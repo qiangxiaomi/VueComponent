@@ -37,7 +37,7 @@ exports.remove = function (el) {
  */
 exports.replace = function (target, el) {
     let parent = target.parentNode;
-    parent.insertBefore(el, target);
+    parent.insertBefore(el, target); // target之前插入el
     parent.removeChild(target);
 };
 

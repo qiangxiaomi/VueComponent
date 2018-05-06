@@ -8,7 +8,7 @@ module.exports = {
             // document.createComment创建并返回一个注释节点 <!--b-component-->
             this.anchor = document.createComment(`${config.prefix}component`);
             // this.el: <my-component message="Hello World!"></my-component>
-            _.replace(this.el, this.anchor);
+            _.replace(this.el, this.anchor);// 插入anchor，移走el
             console.log('=======================this.el', this.el);
             // this.expression: my-component
             this.setComponent(this.expression);

@@ -22,13 +22,11 @@ exports._initProps = function () {
     // el.attributes返回Dom元素的所有属性集合，返回值为NamedNodeMap对象,将NamedNodeMap对象转换为数组
     let attrs = Array.from(el.attributes);
     console.log('==============================attrs', attrs);
-    console.log('====================123', attrs);
     attrs.forEach((attr) => {
         let attrName = attr.name;
         let attrValue = attr.value;
         this.$data[attrName] = attrValue;
     });
-    console.log('====================attrsattrs', attrs);
 };
 
 /**
